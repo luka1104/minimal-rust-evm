@@ -6,6 +6,11 @@ use ethereum_types::U256;
 
 #[derive(Debug)]
 pub struct Bytecode<'data> {
+    data: &'data [u8],
+    jumpdests: Vec<usize>,
+}
+
+impl<'data> Bytecode<'data> {
     pub fn new(data: &'data [u8]) -> Bytecode<'data> {
         Bytecode {
             data,
@@ -73,7 +78,7 @@ impl<'data> BytecodeIterator<'data> {
 impl<'data> iter::Iterator for BytecodeIterator<'data> {
     type Item = Instruction;
 
-    fn next(&mut self) -> Opcode<Self::Item> {
+    fn next(&mut self) -> Option<Self::Item> {
         if self.next_byte >= self.data.len() {
             return None;
         }
@@ -83,7 +88,7 @@ impl<'data> iter::Iterator for BytecodeIterator<'data> {
 
         self.next_byte += instruction_size(opcode);
 
-        Some(Instruction { opcodem pc })
+        Some(Instruction { opcode, pc })
     }
 }
 

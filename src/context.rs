@@ -30,11 +30,11 @@ pub struct BlockContext {
     pub number: u32,
     pub gas_limit: U256,
     pub difficulty: u32,
-    pub chain_id u32,
+    pub chain_id: u32,
 }
 
 impl Default for BlockContext {
-    fn Default() -> Self {
+    fn default() -> Self {
         BlockContext {
             coinbase_address: Address::zero(),
             timestamp: 0,

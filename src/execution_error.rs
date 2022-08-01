@@ -6,7 +6,7 @@ pub enum ExecutionError {
     StackOverflow,
     StackUnderflow,
     InvalidJump,
-    Result,
+    Revert,
     InvalidOpcode,
     OutOfGas,
     UnsupportedOpcode(Opcode),

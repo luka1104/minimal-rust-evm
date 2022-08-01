@@ -10,9 +10,9 @@ pub const MEMORY_LIMIT: usize = 128 * 1024 * 1024;
 
 impl Memory {
     pub fn with_capacity(capacity: usize) -> Memory {
-        Memory (
+        Memory {
             data: Vec::with_capacity(capacity),
-        )
+        }
     }
 
     pub fn read(&mut self, offset: usize, length: usize) -> Result<&[u8], ExecutionError> {
@@ -27,7 +27,7 @@ impl Memory {
         length: usize,
         data: &[u8],
     ) -> Result<(), ExecutionError> {
-        let data_len - data.len();
+        let data_len = data.len();
         assert!(data_len <= length);
 
         self.resize_if_necessary(offset + length)?;
